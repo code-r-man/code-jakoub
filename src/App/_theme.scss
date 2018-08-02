@@ -1,0 +1,61 @@
+@import "~react-toolbox/lib/colors";
+@import "~react-toolbox/lib/mixins";
+@import "~react-toolbox/lib/globals";
+
+/*
+  these variables here are injected using webpack therefore there is no need to import this file
+
+  react-toolbox global variables:
+  https://github.com/react-toolbox/react-toolbox/blob/dev/components/variables.css and
+
+  material design color palettes:
+  https://github.com/react-toolbox/react-toolbox/blob/dev/components/colors.css to know the variable
+
+  media queries, currently we implement responsive design only for layout using react-flexbox-grid,
+  use these queries only to override default react-toolbox components behaviour:
+  https://github.com/react-toolbox/react-toolbox/blob/dev/components/media.css
+*/
+
+$color-primary: $palette-teal-300;
+$color-primary-dark: $palette-teal-800;
+
+// this is how you style a react-toolbox component globally...
+// appBar
+$appbar-color: #222;
+$appbar-contrast: $color-white;
+$appbar-height: 4.8rem;
+$appbar-h-padding: 0;
+
+
+// custom stuff, not part of material design or react-toolbox theme, please avoid adding to this...
+$primary1: #4db6ac;
+$primary2: #0097A7;
+$primary3: #E0E0E0;
+$accent1: #FF4081;
+$accent2: #F5F5F5;
+$accent3: #9E9E9E;
+$dark: #222;
+$light: #FFFFFF;
+
+$textColor: $dark;
+$errorBaseColor: $accent1;
+
+$alternateTextColor: $light;
+$canvasColor: $light;
+$borderColor: #E0E0E0;
+$disabledColor: lighten($dark, 30);
+$pickerHeaderColor: #9E9E9E;
+$clockCircleColor: lighten($dark, 7);
+$shadowColor: black;
+
+$errorColor: $errorBaseColor;
+$errorBg: lighten($errorBaseColor, 30);
+$errorSize: 14px;
+
+$subtleSize: 12px;
+
+
+$subtleFontSize: 12px;
+
+
+$marginNormal: 10px;

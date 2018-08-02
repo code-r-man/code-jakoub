@@ -1,0 +1,21 @@
+.centeredBoxPage {
+  display: flex;
+  flex: 1 0 auto;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  & > div {
+    flex-direction: row;
+    width: 100%;
+  }
+}
+
+.title {
+  flex: 0 0 auto;
+  margin-top: -6rem;
+}
+
+.paper {
+  padding: $marginNormal;
+}

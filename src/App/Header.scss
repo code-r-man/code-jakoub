@@ -1,0 +1,90 @@
+.spacer {
+  text-align: center;
+  flex: 1;
+}
+
+.nav {
+  a {
+    @extend .navItem;
+
+    &:hover {
+      background-color: rgba(255,255,255,.1);
+    }
+  }
+
+   & > span {
+    @extend .navItem;
+    font-weight: 300;
+  }
+}
+
+.navItem {
+  display: inline-block;
+  line-height: 2rem;
+  padding: 1.4rem 1.6rem;
+  text-decoration: none;
+}
+
+.active {
+  box-shadow: inset 0 -5px 0 0 $color-primary;
+}
+
+.logo {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  border-right: solid 1px rgba(255,255,255,.1);
+
+  height: $appbar-height;
+  width: $appbar-height * 1.2;
+
+  & > svg {
+    width: 3rem;
+  }
+
+  &:hover {
+    background-color: rgba(255,255,255,.1);
+
+    & > svg {
+      //fill: $color-primary;
+    }
+  }
+}
+
+.projectMenu {
+  composes: nav;
+}
+
+.userMenu {
+  padding-right: 0.5rem;
+
+  composes: nav;
+  justify-content: flex-end;
+}
+
+.iconMenu {
+  z-index: 999;
+
+  & > button {
+    color: $appbar-contrast !important; // TODO do some proper themeing instead of important overwrites
+  }
+}
+
+// TODO implement proper menu styles
+.appBar {
+  & > button {
+    @extend .navItem;
+
+    color: #fff !important;
+    min-width: 0 !important;
+    border-radius: 0;
+    text-transform: none;
+    font-weight: 400;
+    font-size: 1.6rem;
+    height: auto;
+
+    &:hover {
+      background-color: rgba(255,255,255,.1) !important;
+    }
+  }
+}

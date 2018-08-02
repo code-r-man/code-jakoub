@@ -1,0 +1,60 @@
+html {
+  font-size: 62.5%;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: $canvasColor;
+  color: $textColor;
+  font-family: Roboto, sans-serif;
+  font-size: 1.6rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+// TODO: Add h1 later
+a, abbr, address, article, aside, audio, b, blockquote, body, caption, cite,
+code, dd, del, dfn, dialog, div, dl, dt, em, fieldset, figure, footer, form,
+h2, h3, h4, h5, h6, header, hgroup, hr, html, i, iframe, img, ins, kbd, label,
+legend, li, mark, menu, nav, object, ol, p, pre, q, samp, section, small, span,
+strong, sub, sup, table, tbody, td, tfoot, th, thead, time, tr, ul, var, video {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:global {
+ // TODO: get rid of this hack
+ body > div > div[data-react-toolbox="overlay"] {
+   justify-content: flex-start;
+   z-index: 2000;
+   & > div[data-react-toolbox="dialog"] {
+     margin-top: 16rem;
+   }
+ }
+
+  .gamebook-portal,
+  .page {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+  }
+
+  .privateWrapper {
+    flex: 1 0 auto;
+    display: flex;
+  }
+}
+

@@ -1,0 +1,12 @@
+.buttonContainer {
+  text-align: center;
+  padding-top: 20px;
+  height: 70px;
+
+  display: flex;
+  flex-direction: column;
+
+  & > button {
+    flex: 1 1 auto;
+  }
+}

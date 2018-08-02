@@ -1,0 +1,21 @@
+{
+  "server": {
+    "port": 3000
+  },
+  "graphql": {
+    "proto": "http",
+    "host": "localhost:3000",
+    "endpoint": "/graphql"
+  },
+  "public": {
+    "web": {
+      "proto": "http",
+      "host": "localhost:3000"
+    },
+    "graphql": {
+      "proto": "http",
+      "host": "localhost:3000",
+      "endpoint": "/graphql"
+    }
+  }
+}
