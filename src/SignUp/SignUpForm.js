@@ -6,6 +6,8 @@ import _curry from 'lodash/curry';
 import ProgressBar from 'react-toolbox/lib/progress_bar';
 import _identity from 'lodash/identity';
 
+import styles from 'components/FormError.scss';
+
 class SignUpForm extends Component {
 
   static propTypes = {
@@ -30,12 +32,64 @@ class SignUpForm extends Component {
         password: [],
         username: [],
       },
+      tags: {
+        list: [
+          {id:'len', sts:true, msg:'The password should be at least 8 characters long'},
+          {id:'lower', sts:true, msg: 'The password should contain at least one lowercase character'}
+        ]
+      },
+      tagsVisible:false,
     };
+  }
+
+
+  tagsToggle = (type, value) => {
+    if (type === 'password') {
+      value.length > 0 ? (
+        this.setState({tagsVisible:true})
+      ) : (
+        this.setState({tagsVisible:false})
+      ) 
+    }
   }
 
   // update the state when the input fields change...
   handleInputChange = _curry((name, value) => {
     this.setState({ [name]: value });
+    
+    // Hide/show tags list
+    this.tagsToggle(name,value);
+    
+
+    // Update tag status
+    if (value.length >= 8) {
+      const newTagsList = [...this.state.tags.list];
+      const targetIndex = newTagsList.findIndex(item => {
+        return item.id === 'len';
+      });
+
+      newTagsList[targetIndex].sts = false;
+
+      this.setState({
+        tags: {
+          list: newTagsList
+        }
+      });
+      
+    } else if (value.length < 8) {
+      const newTagsList = [...this.state.tags.list];
+      const targetIndex = newTagsList.findIndex(item => {
+        return item.id === 'len';
+      });
+
+            newTagsList[targetIndex].sts = true;
+
+      this.setState({
+        tags: {
+          list: newTagsList
+        }
+      });
+    }
   });
   handleUsernameChange = this.handleInputChange('username');
   handlePasswordChange = this.handleInputChange('password');
@@ -112,6 +166,18 @@ class SignUpForm extends Component {
   render() {
     const { isLoading, errorMessage } = this.props;
 
+    let tagList = null;
+
+    if (this.state.tagsVisible) {
+      tagList = this.state.tags.list.map(item => {
+        return <li
+         key={item.id}
+         className={item.sts ? styles.formError : null}>
+         {item.msg}
+         </li>
+      });
+    }
+
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -133,6 +199,7 @@ class SignUpForm extends Component {
           />
           {this.renderFieldErrors('password')}
 
+          <ul>{tagList}</ul>
 
           {isLoading ? (
             <div>
