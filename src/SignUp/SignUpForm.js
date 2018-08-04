@@ -6,7 +6,7 @@ import _curry from 'lodash/curry';
 import ProgressBar from 'react-toolbox/lib/progress_bar';
 import _identity from 'lodash/identity';
 
-import styles from 'components/FormError.scss';
+import ValidationList from 'components/ValidationList';
 
 class SignUpForm extends Component {
 
@@ -197,18 +197,6 @@ class SignUpForm extends Component {
   render() {
     const { isLoading, errorMessage } = this.props;
 
-    let tagList = null;
-
-    if (this.state.tagsVisible) {
-      tagList = this.state.tags.list.map(item => {
-        return <li
-         key={item.id}
-         className={item.sts ? styles.formError : null}>
-         {item.msg}
-         </li>
-      });
-    }
-
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -230,7 +218,10 @@ class SignUpForm extends Component {
           />
           {this.renderFieldErrors('password')}
 
-          <ul>{tagList}</ul>
+          <ValidationList 
+            listTags={this.state.tags.list} 
+            listVisible={this.state.tagsVisible} 
+          />
 
           {isLoading ? (
             <div>
