@@ -53,6 +53,21 @@ class SignUpForm extends Component {
     }
   }
 
+  tagsChangeState = (type,active) => {
+    const newTagsList = [...this.state.tags.list];
+    const targetIndex = newTagsList.findIndex(item => {
+      return item.id === type;
+    });
+  
+    newTagsList[targetIndex].sts = active;
+  
+    this.setState({
+      tags: {
+        list: newTagsList
+      }
+    });
+  }
+
   // update the state when the input fields change...
   handleInputChange = _curry((name, value) => {
     this.setState({ [name]: value });
@@ -61,34 +76,11 @@ class SignUpForm extends Component {
     this.tagsToggle(name,value);
     
 
-    // Update tag status
+    // Check for min password length
     if (value.length >= 8) {
-      const newTagsList = [...this.state.tags.list];
-      const targetIndex = newTagsList.findIndex(item => {
-        return item.id === 'len';
-      });
-
-      newTagsList[targetIndex].sts = false;
-
-      this.setState({
-        tags: {
-          list: newTagsList
-        }
-      });
-      
+      this.tagsChangeState('len',false)
     } else if (value.length < 8) {
-      const newTagsList = [...this.state.tags.list];
-      const targetIndex = newTagsList.findIndex(item => {
-        return item.id === 'len';
-      });
-
-            newTagsList[targetIndex].sts = true;
-
-      this.setState({
-        tags: {
-          list: newTagsList
-        }
-      });
+      this.tagsChangeState('len',true)
     }
   });
   handleUsernameChange = this.handleInputChange('username');
