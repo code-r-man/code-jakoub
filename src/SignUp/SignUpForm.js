@@ -35,7 +35,10 @@ class SignUpForm extends Component {
       tags: {
         list: [
           {id:'len', sts:true, msg:'The password should be at least 8 characters long'},
-          {id:'lower', sts:true, msg: 'The password should contain at least one lowercase character'}
+          {id:'lower', sts:true, msg: 'The password should contain at least one lowercase character'},
+          {id:'upper', sts:true, msg: 'The password should contain at least one uppercase character'},
+          {id:'digit', sts:true, msg: 'The password should contain at least one digit character'},
+          {id:'spec', sts:true, msg: 'The password should contain at least one symbol'}
         ]
       },
       tagsVisible:false,
@@ -68,6 +71,47 @@ class SignUpForm extends Component {
     });
   }
 
+  tagsEvaluate = (type, value) => {
+    if (type === 'password') {
+
+      // Check minimum password length
+      if (value.length >= 8) {
+        this.tagsChangeState('len',false);
+      } else if (value.length < 8) {
+        this.tagsChangeState('len',true);
+      }
+
+      // Check lower case
+      if (/([a-z])/.test(value)) {
+        this.tagsChangeState('lower',false);
+      } else if (!/([a-z])/.test(value)){
+        this.tagsChangeState('lower',true);
+      }
+
+      // Check upper case
+      if (/([A-Z])/.test(value)) {
+        this.tagsChangeState('upper',false);
+      } else if (!/([A-Z])/.test(value)){
+        this.tagsChangeState('upper',true);
+      }
+
+      // Check digit
+      if (/([0-9])/.test(value)) {
+        this.tagsChangeState('digit',false);
+      } else if (!/([0-9])/.test(value)){
+        this.tagsChangeState('digit',true);
+      }
+
+      // Check symbol
+      if (/(?=.*?[#?!@$%^&*-])/.test(value)) {
+        this.tagsChangeState('spec',false);
+      } else if (!/(?=.*?[#?!@$%^&*-])/.test(value)){
+        this.tagsChangeState('spec',true);
+      }
+  
+    }
+  }
+
   // update the state when the input fields change...
   handleInputChange = _curry((name, value) => {
     this.setState({ [name]: value });
@@ -75,13 +119,8 @@ class SignUpForm extends Component {
     // Hide/show tags list
     this.tagsToggle(name,value);
     
-
-    // Check for min password length
-    if (value.length >= 8) {
-      this.tagsChangeState('len',false)
-    } else if (value.length < 8) {
-      this.tagsChangeState('len',true)
-    }
+    // Evaluate min password length
+    this.tagsEvaluate(name, value);
   });
   handleUsernameChange = this.handleInputChange('username');
   handlePasswordChange = this.handleInputChange('password');
