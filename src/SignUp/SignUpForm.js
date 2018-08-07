@@ -103,7 +103,7 @@ class SignUpForm extends Component {
       }
 
       // Check symbol
-      if (/(?=.*?[#?!@$%^&*-])/.test(value)) {
+      if (/(?=.*?[#?!@$%^&*-+])/.test(value)) {
         this.tagsChangeState('spec',false);
       } else if (!/(?=.*?[#?!@$%^&*-])/.test(value)){
         this.tagsChangeState('spec',true);

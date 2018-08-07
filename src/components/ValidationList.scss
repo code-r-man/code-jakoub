@@ -1,0 +1,24 @@
+.listTags {
+    max-width: 370px;
+    font-size: 0.85em;
+    list-style: none;
+    text-align: left;
+
+    > li {
+        margin-bottom: 10px;
+        position:relative;
+        padding-left: 30px;
+    }
+}
+
+.listTagsError {
+    color: red;
+}
+
+.listIcon {
+    display: inline-block;
+    width: 1.1em;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
