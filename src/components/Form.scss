@@ -1,0 +1,51 @@
+// Global settings
+$color-primary: #00AFF0;
+$curvature: 10px;
+
+
+.container {
+    max-width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.box {
+    background-color: $color-primary;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.boxTitle {
+    margin-bottom: 40px;
+}
+
+
+.formGroup {
+    input {
+        border: none;
+        background-color: #fff;
+        outline: none !important;
+        display: block;
+        width: 100%;
+        padding: 12px;
+        
+        &:first-child {
+            border-top-left-radius: $curvature;
+            border-top-right-radius: $curvature;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        }
+
+        &:last-child {
+            border-bottom-left-radius: $curvature;
+            border-bottom-right-radius: $curvature;
+        }
+    }
+}
+
+.btn {
+    background-color: #fff;
+    color: $color-primary;
+}
