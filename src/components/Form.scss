@@ -57,9 +57,26 @@ $curvature: 10px;
     padding: 10px;
     width: 100%;
     cursor: pointer;
+    outline: none !important;
 
     &[disabled="true"] {
         opacity: 0.6;
         cursor: default;
     }
+}
+
+
+.errorBlock {
+    display: block;
+    padding: 6px 0;
+    color: red;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.listErrors {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 20px;
+    margin-top: -20px;
 }
