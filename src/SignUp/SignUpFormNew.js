@@ -114,7 +114,7 @@ class Form extends Component {
 
         return (
             <div className={style.container}>
-                <h2>{this.state.general.title}</h2>
+                <h2 className={style.title}>{this.state.general.title}</h2>
 
                 <div className={style.box}>
                     <h2 className={style.boxTitle}>{this.state.general.heading}</h2>
